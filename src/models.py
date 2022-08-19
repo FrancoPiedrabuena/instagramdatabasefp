@@ -8,21 +8,21 @@ from eralchemy import render_er
 
 Base = declarative_base()
 
-class user(Base):
-    __tablename__= 'users'
+class User(Base):
+    __tablename__= 'user'
 
-    user_id = Column (Integer, primary_key = True)
+    id = Column (Integer, primary_key = True)
     name = Column (String(120), nullable = False)
     lastname = Column (String(120), nullable = False)
     email = Column (String(50), nullable = False, unique = True)
     password = Column (String(50), nullable = False)
 
 
-class follower(Base):
+class Follower(Base):
     __tablename__= 'followers'
 
-    follow_id = Column (Integer, ForeignKey('users.user_id'), primary_key = True, nullable=False)
-    user_id = Column (Integer, ForeignKey('users.user_id'), primary_key = True, nullable=False)
+    follow_id = Column (Integer, ForeignKey('user.user_id'), primary_key = True, nullable=False)
+    user_id = Column (Integer, ForeignKey('user.user_id'), primary_key = True, nullable=False)
 
 class Post(Base):
     __tablename__ = 'post'
@@ -30,7 +30,7 @@ class Post(Base):
     post_id = Column(Integer, primary_key=True, nullable=False)
     user_id = Column (Integer, ForeignKey('user.id'), primary_key = True, nullable=False)
 
-class media(Base):
+class Media(Base):
     __tablename__= 'media'
 
     media_id = Column (Integer, primary_key = True)
